@@ -37,6 +37,7 @@ const step = timedelta => {
             obj.update();
         }
     }
+    last_timestamp = timedelta;
    requestAnimationFrame(step); 
 }
 
