@@ -6,47 +6,73 @@ import RecordView from '@/views/record/RecordIndexView.vue'
 import NotFound from '@/views/error/NotFound.vue'
 import UserAccountLoginView from '@/views/user/account/UserAccountLoginView.vue'
 import UserAccountRegisterView from '@/views/user/account/UserAccountRegisterView.vue'
+import store from '@/store/index.js'
+
 const routes = [
   {
      path: '/',
     name: 'home',
-    redirect: '/pk/'
+    redirect: '/pk/',
+    meta:{
+      requiresAuth:true,
+    }
   },
    {
     path: '/pk/',
     name: 'Pk_index',
-    component: PkIndexView
+    component: PkIndexView,
+    meta:{
+      requiresAuth:true,
+    }
   },
      {
     path: '/record/',
     name: 'Record_index',
-    component: RecordView
+    component: RecordView,
+    meta:{
+      requiresAuth:true,
+    }
   },
    {
     path: '/ranklist/',
     name: 'Ranklist_index',
-    component: RanklistView
+    component: RanklistView,
+    meta:{
+      requiresAuth:true,
+    }
   },
 
   {
     path:'/user/bot/',
     name:'UserBot_index',
-    component:UserBotIndexView
+    component:UserBotIndexView,
+    meta:{
+      requiresAuth:true,
+    }
   },
   {
     path:'/user/account/login/',
     name:'user_account_login',
-    component:UserAccountLoginView
+    component:UserAccountLoginView,
+    meta:{
+      requiresAuth:false,
+    }
   },
   {
     path:'/user/account/register/',
     name:'user_account_register',
-    component:UserAccountRegisterView
+    component:UserAccountRegisterView,
+    meta:{
+      requiresAuth:false,
+    }
   },
   {
     path: '/404/',
     name: 'NotFound',
-    component: NotFound
+    component: NotFound,
+    meta:{
+      requiresAuth:false,
+    }
   },
   {
     path: '/:catchAll(.*)',
@@ -58,6 +84,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+router.beforeEach((to,from,next) => {
+    if(to.meta.requiresAuth && !store.state.user.is_login){
+      next('/user/account/login/');
+    }
+    else{
+      next();
+    }
 })
 
 export default router

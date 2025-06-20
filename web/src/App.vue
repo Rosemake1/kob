@@ -23,7 +23,7 @@ export default {
     //     headers: {
     //       'Authorization': "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwYWZjYWM3ZWIzZjc0YWZhOGRiMzg5NjM4ODE5YzBmMiIsInN1YiI6IjIiLCJpc3MiOiJzZyIsImlhdCI6MTc1MDMxODExMiwiZXhwIjoxNzUxNTI3NzEyfQ.nTmNajkN-7FU716bZH1m-RgD1879LWNTbuD51fEOfZ8", // 示例：添加认证令牌
     //     }
-    //   }).then(function (response) {
+    //   }).then(function (response)   {
     //     console.log(response);
     //   }).catch(function (error) {
     //     console.log(error);
