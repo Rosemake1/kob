@@ -28,14 +28,7 @@ public class RemoveServiceImpl implements RemoveService {
         int bot_id = Integer.parseInt(data.get("bot_id"));
         Bot bot = botMapper.selectById(bot_id);
         Map<String,String> map = new HashMap<>();
-        if(bot == null){
-            map.put("error_message","Bot不存在");
-            return map;
-        }
-        if(!bot.getUserId().equals(user.getId())){
-            map.put("error_message","你没有权限删除这个Bot");
-            return map;
-        }
+        
         botMapper.deleteById(bot_id);
         map.put("error_message","success");
         return map;
